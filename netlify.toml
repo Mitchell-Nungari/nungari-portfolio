@@ -1,0 +1,34 @@
+# Netlify
+#
+# The site is plain static files at the repository root; the only server-side
+# piece is the events function.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Uploaded poster images live in the "posters" Blobs store and are served
+# through the posters function, so the URL stays short: /posters/abc.jpg
+[[redirects]]
+  from = "/posters/*"
+  to = "/.netlify/functions/posters/:splat"
+  status = 200
+
+# The admin page is not part of the site and must never be indexed
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
+# `netlify dev` serves the published folder on 8888 and mounts the functions
+# under /.netlify/functions/* on the same origin.
+[dev]
+  publish = "."
+  port = 8888
+  autoLaunch = false

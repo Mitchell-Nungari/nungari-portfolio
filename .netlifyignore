@@ -1,0 +1,11 @@
+# Files that should not be part of the deployed site.
+# (The publish directory is the repository root, so keep it lean.)
+
+node_modules
+.netlify
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+shots

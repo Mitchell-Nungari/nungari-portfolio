@@ -1,0 +1,20 @@
+{
+  "name": "nungari-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mitchell Nungari — lighting design portfolio, with a Netlify function serving approved events.",
+  "scripts": {
+    "dev": "netlify dev",
+    "dev:static": "python -m http.server 8899",
+    "test": "node scripts/test-events.mjs && node scripts/test-discover.mjs && node scripts/test-monthly.mjs && node scripts/test-admin.mjs",
+    "seed": "node scripts/seed-events.mjs",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

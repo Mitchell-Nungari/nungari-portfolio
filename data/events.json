@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "note": "Sample data only. Replace with the live feed or point fetchEvents() at /.netlify/functions/events.",
+    "timezone": "Africa/Nairobi",
+    "sample": true
+  },
+  "events": [
+    {
+      "id": "ev-nairobi-kilimanjaro-2027",
+      "title": "Kilimanjaro Sessions",
+      "date": "2027-02-19T20:00:00+03:00",
+      "end": "2027-02-19T23:30:00+03:00",
+      "venue": "KICC Auditorium",
+      "city": "Nairobi",
+      "poster": "images/site/jazz-festival-2017.jpg",
+      "ticketUrl": "https://example.com/tickets/kilimanjaro-sessions",
+      "source": "sample"
+    },
+    {
+      "id": "ev-mombasa-harbour-lights-2027",
+      "title": "Harbour Lights",
+      "date": "2027-03-06T19:30:00+03:00",
+      "end": "2027-03-06T22:30:00+03:00",
+      "venue": "Fort Jesus Amphitheatre",
+      "city": "Mombasa",
+      "poster": "images/site/diani-beach-2017.jpg",
+      "ticketUrl": "https://example.com/tickets/harbour-lights",
+      "source": "sample"
+    },
+    {
+      "id": "ev-diani-sound-bath-2027",
+      "title": "Diani Sound Bath",
+      "date": "2027-04-18T17:00:00+03:00",
+      "end": "2027-04-18T21:00:00+03:00",
+      "venue": "Diani Beach Club",
+      "city": "Diani",
+      "poster": "images/site/groove-worship-2017.jpg",
+      "ticketUrl": "https://example.com/tickets/diani-sound-bath",
+      "source": "sample"
+    },
+    {
+      "id": "ev-nairobi-cue-stack-2027",
+      "title": "Cue Stack: Live",
+      "date": "2027-05-22T21:00:00+03:00",
+      "end": "2027-05-23T01:00:00+03:00",
+      "venue": "The Alchemist",
+      "city": "Nairobi",
+      "poster": "images/site/jameson-2017.jpg",
+      "ticketUrl": "https://example.com/tickets/cue-stack-live",
+      "source": "sample"
+    },
+    {
+      "id": "ev-mombasa-sunset-rewind-2026",
+      "title": "Sunset Rewind",
+      "date": "2026-11-08T18:00:00+03:00",
+      "end": "2026-11-08T22:00:00+03:00",
+      "venue": "Bamburi Blu",
+      "city": "Mombasa",
+      "poster": "images/site/luther-2019.jpg",
+      "ticketUrl": "https://example.com/tickets/sunset-rewind",
+      "source": "sample"
+    },
+    {
+      "id": "ev-nairobi-echoes-2026",
+      "title": "Echoes of Aretha",
+      "date": "2026-06-14T20:30:00+03:00",
+      "end": "2026-06-14T23:30:00+03:00",
+      "venue": "Kenya National Theatre",
+      "city": "Nairobi",
+      "poster": "images/site/aretha-2018.jpg",
+      "ticketUrl": "https://example.com/tickets/echoes-of-aretha",
+      "source": "sample"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Event desk | Mitchell Nungari</title>
+  <meta name="description" content="Private event desk for Mitchell Nungari." />
+  <meta name="theme-color" content="#050506" />
+  <link rel="icon" type="image/png" href="images/site/mm%20logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/citycard.css" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="admin">
+    <header class="admin__top">
+      <a class="brand" href="index.html" aria-label="Mitchell Nungari — home">
+        <span class="brand__mark"><img src="images/site/mm%20logo.png" width="22" height="22" alt="" /></span>
+        <span class="brand__type">
+          <span class="brand__name">Mitchell Nungari</span>
+          <span class="brand__sub">Event desk</span>
+        </span>
+      </a>
+      <div class="admin__session">
+        <p class="label" id="sessionInfo">Not signed in</p>
+        <button class="btn btn--glass" id="signOut" type="button" hidden>Sign out</button>
+      </div>
+    </header>
+
+    <!-- ================= LOGIN ================= -->
+    <section class="login" id="loginView">
+      <div class="login__card">
+        <p class="label">Private <span class="sep">·</span> Nairobi</p>
+        <h1 class="login__title">Approve the<br /><em>line-up.</em></h1>
+        <form class="login__form" id="loginForm" autocomplete="on">
+          <div class="field">
+            <label for="password">Admin password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required />
+          </div>
+          <button class="btn btn--solid" type="submit">Sign in <span class="btn__chip"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></button>
+        </form>
+        <p class="login__error" id="loginError" role="status"></p>
+      </div>
+    </section>
+
+    <!-- ================= DESK ================= -->
+    <main class="desk" id="deskView" hidden>
+      <div class="desk__head">
+        <div>
+          <p class="label" id="deskMeta">The diary</p>
+          <h1 class="desk__title">Pending, <em>approved,</em> rejected.</h1>
+        </div>
+        <div class="desk__actions">
+          <button class="btn btn--glass" id="refreshBtn" type="button">Refresh</button>
+          <button class="btn btn--solid" id="addBtn" type="button">Add event</button>
+        </div>
+      </div>
+
+      <nav class="tabs" id="tabs" aria-label="Event lists">
+        <button class="tab is-active" type="button" data-tab="pending" aria-pressed="true">Pending <b id="countPending">0</b></button>
+        <button class="tab" type="button" data-tab="approved" aria-pressed="false">Approved <b id="countApproved">0</b></button>
+        <button class="tab" type="button" data-tab="rejected" aria-pressed="false">Rejected <b id="countRejected">0</b></button>
+      </nav>
+
+      <section class="panel" id="panel" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script>if (!window.gsap) document.documentElement.classList.remove('js');</script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
