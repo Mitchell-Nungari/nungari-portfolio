@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9BDXQW2QS"></script>
+  <!-- Analytics: loaded after first paint so it never delays the page -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-W9BDXQW2QS');
+    window.addEventListener('load', function () {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', 'G-W9BDXQW2QS');
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-W9BDXQW2QS';
+      document.head.appendChild(s);
+    }, { once: true });
   </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,13 +25,14 @@
   <meta property="og:image" content="images/site/bg.jpg" />
   <link rel="icon" type="image/png" href="images/site/mm%20logo.png" />
   <link rel="apple-touch-icon" href="images/site/mm%20logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="images/site/bg.jpg" fetchpriority="high" />
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-tight-latin.v1.woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/citycard.css" />
   <link rel="stylesheet" href="assets/css/events.css" />
+  <link rel="stylesheet" href="assets/css/hero-shared.css" />
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -52,8 +58,9 @@
   <div class="grain" aria-hidden="true"></div>
 
   <div class="ambient" aria-hidden="true">
-    <video class="ambient__video" autoplay muted loop playsinline preload="auto" poster="images/site/bg.jpg">
-      <source src="images/bg.mp4" type="video/mp4" />
+    <video class="ambient__video" muted loop playsinline preload="none" poster="images/site/bg.jpg" aria-hidden="true">
+      <source src="images/bg-720.v1.webm" type="video/webm" />
+      <source src="images/bg-720.v1.mp4" type="video/mp4" />
     </video>
     <div class="ambient__veil"></div>
   </div>
@@ -130,12 +137,12 @@
 
           <div class="hero__aside" data-intro>
             <div class="clock">
-              <p class="label clock__label">Nairobi · EAT</p>
-              <p class="clock__time" id="clockTime" aria-label="Current time in Nairobi">--:--:--</p>
+              <p class="label clock__label">Nairobi · LOCAL TIME</p>
+              <p class="clock__time" id="clockTime" aria-label="Current time in Nairobi"><span class="clock__hm" id="clockHM">--:--</span><span class="clock__sec" id="clockSec">:--</span></p>
               <p class="clock__date" id="clockDate">—</p>
               <p class="clock__foot"><span class="dot"></span><span>GMT+3 · doors on time</span></p>
             </div>
-            <p class="hero__sub">Every room I light — club residents, festival main stages and corporate launches. Dates, venues and doors, all on East Africa Time.</p>
+            <p class="hero__sub">Shows programmed on grandMA, Avolites and HOG, from club residencies to festival stages with 300+ fixtures. Dates, venues and load-ins, updated monthly.</p>
             <div class="hero__actions">
               <button class="btn btn--solid magnet" type="button" data-scroll="#lineup">Browse the line-up <span class="btn__chip"><svg aria-hidden="true"><use href="#i-right"/></svg></span></button>
               <a class="btn btn--glass magnet" href="index.html#contact">Book a show <span class="btn__chip"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
@@ -354,12 +361,12 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script>if (!window.gsap) document.documentElement.classList.remove('js');</script>
-  <script src="assets/js/base.js"></script>
-  <script src="assets/js/events.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',function(){if(!window.gsap)document.documentElement.classList.remove('js');});</script>
+  <script defer src="assets/js/base.js"></script>
+  <script defer src="assets/js/events.js"></script>
   <script type="importmap">
     { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }
   </script>

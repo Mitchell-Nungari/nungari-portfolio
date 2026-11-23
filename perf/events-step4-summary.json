@@ -1,0 +1,16 @@
+{
+  "score": 64,
+  "lcp": 7917.610000000001,
+  "tbt": 382.50000000000045,
+  "cls": 0.000906473194746234,
+  "fcp": 1835.593,
+  "si": 3625.246315122499,
+  "weight": 1204299,
+  "requests": [
+    "226 KB  /images/site/jazz-festival-2017-1280.webp",
+    "203 KB  https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "179 KB  https://www.googletagmanager.com/gtag/js?id=G-W9BDXQW2QS",
+    "123 KB  /images/site/bg.jpg",
+    "72 KB  /images/site/jameson-2017-1000.webp"
+  ]
+}

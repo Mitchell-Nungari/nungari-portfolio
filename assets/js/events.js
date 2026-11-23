@@ -77,7 +77,7 @@
      2. Formatting — everything in Nairobi time (EAT, GMT+3)
      ============================================================ */
   const TZ = 'Africa/Nairobi';
-  const timeFmt = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  const timeFmt = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
   const dateFmt = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   const dayFmt = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, day: '2-digit' });
   const monFmt = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, month: 'short' });
@@ -138,28 +138,32 @@
   /* ============================================================
      4. Clock — live Nairobi time
      ============================================================ */
-  const clockTime = $('#clockTime');
+  const clockHM = $('#clockHM');
+  const clockSec = $('#clockSec');
   const clockDate = $('#clockDate');
   let lastSec = null;
+  let clockTimer = 0;
 
   const tickClock = () => {
-    if (!clockTime) return;
+    if (!clockHM || !clockSec) return;
     const now = new Date();
-    const [hm, sec] = timeFmt.format(now).split(':');
-    if (lastSec === null) {
-      clockTime.innerHTML = '<span>' + hm + '</span><span class="clock__sec">:' + sec + '</span>';
-    } else {
-      clockTime.innerHTML = '<span>' + hm + '</span><span class="clock__sec">:<span id="clockSec">' + sec + '</span></span>';
-      const secEl = $('#clockSec');
-      if (secEl && hasGSAP) {
-        gsap.fromTo(secEl, { y: -7, opacity: .35 }, { y: 0, opacity: 1, duration: .45, ease: 'power2.out' });
-      }
+    // en-GB + hourCycle h23 + the Nairobi timeZone yields 24-hour HH:MM:SS.
+    const [hh, mm, ss] = timeFmt.format(now).split(':');
+    clockHM.textContent = hh + ':' + mm;
+    clockSec.textContent = ':' + ss;
+    if (lastSec !== null && lastSec !== ss && hasGSAP) {
+      gsap.fromTo(clockSec, { y: -5, opacity: .5 }, { y: 0, opacity: 1, duration: .4, ease: 'power2.out' });
     }
-    lastSec = sec;
+    lastSec = ss;
     if (clockDate) clockDate.textContent = dateFmt.format(now);
   };
+  // Re-arm just after each real second boundary so the clock never drifts.
+  const scheduleTick = () => {
+    const delay = 1000 - (Date.now() % 1000) + 8;
+    clockTimer = window.setTimeout(() => { tickClock(); scheduleTick(); }, delay);
+  };
   tickClock();
-  setInterval(tickClock, 1000);
+  scheduleTick();
 
   /* ============================================================
      5. Hero entrance — same choreography as the home page

@@ -1,0 +1,16 @@
+{
+  "score": 54,
+  "lcp": 9628.148000000001,
+  "tbt": 730.9279999999992,
+  "cls": 0.001745044215437488,
+  "fcp": 1903.396,
+  "si": 3592.792771228912,
+  "weight": 1814477,
+  "requests": [
+    "383 KB  /images/site/jazz-festival-2017.jpg",
+    "163 KB  /images/site/kcb-mpesa-2015.jpg",
+    "129 KB  /images/site/aretha-2018.jpg",
+    "128 KB  /images/site/eabl.png",
+    "123 KB  /images/site/bg.jpg"
+  ]
+}

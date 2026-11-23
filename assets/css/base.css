@@ -497,3 +497,14 @@ em,.italic{
   .menu{padding-top:88px}
   .menu__foot{flex-direction:column;align-items:flex-start}
 }
+
+/* ---------- Small screens: keep the look, drop the GPU cost ---------- */
+@media (max-width:760px){
+  /* A still, small tile reads the same at 5% opacity but never repaints a
+     200%-sized layer three times a second. */
+  .grain{inset:0;width:100%;height:100%;background-size:128px 128px;animation:none}
+  .nav__island{-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
+  .btn--glass{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  /* The movie is paused on phones, so it needs no dedicated GPU layer. */
+  .ambient__video{will-change:auto}
+}

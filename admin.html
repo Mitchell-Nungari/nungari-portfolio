@@ -9,10 +9,9 @@
   <meta name="description" content="Private event desk for Mitchell Nungari." />
   <meta name="theme-color" content="#050506" />
   <link rel="icon" type="image/png" href="images/site/mm%20logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-tight-latin.v1.woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/citycard.css" />
   <link rel="stylesheet" href="assets/css/admin.css" />
@@ -77,8 +76,8 @@
 
   <div class="toast" id="toast" aria-live="polite"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script>if (!window.gsap) document.documentElement.classList.remove('js');</script>
-  <script src="assets/js/admin.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',function(){if(!window.gsap)document.documentElement.classList.remove('js');});</script>
+  <script defer src="assets/js/admin.js"></script>
 </body>
 </html>

@@ -1,0 +1,6 @@
+/* Self-hosted latin subsets: variable axes for the two UI families.
+   font-display:swap keeps text visible while the font arrives. */
+@font-face{font-family:'Inter Tight';font-style:normal;font-weight:300 600;font-display:swap;src:url('../fonts/inter-tight-latin.v1.woff2') format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url('../fonts/jetbrains-mono-latin.v1.woff2') format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/instrument-serif-400-latin.v1.woff2') format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url('../fonts/instrument-serif-400-italic-latin.v1.woff2') format('woff2')}

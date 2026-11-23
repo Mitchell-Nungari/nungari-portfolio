@@ -1,0 +1,16 @@
+{
+  "score": 42,
+  "lcp": 5712.0795,
+  "tbt": 11016.5,
+  "cls": 0,
+  "fcp": 1890.083,
+  "si": 6434.719188664405,
+  "weight": 1111443,
+  "requests": [
+    "203 KB  https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "179 KB  https://www.googletagmanager.com/gtag/js?id=G-W9BDXQW2QS",
+    "123 KB  /images/site/bg.jpg",
+    "110 KB  /images/site/ma3-902.v1.webp",
+    "82 KB  /images/site/bg1.jpg"
+  ]
+}

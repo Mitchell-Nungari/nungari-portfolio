@@ -12,7 +12,7 @@
       "end": "2027-02-19T23:30:00+03:00",
       "venue": "KICC Auditorium",
       "city": "Nairobi",
-      "poster": "images/site/jazz-festival-2017.jpg",
+      "poster": "images/site/jazz-festival-2017-1280.v1.webp",
       "ticketUrl": "https://example.com/tickets/kilimanjaro-sessions",
       "source": "sample"
     },
@@ -23,7 +23,7 @@
       "end": "2027-03-06T22:30:00+03:00",
       "venue": "Fort Jesus Amphitheatre",
       "city": "Mombasa",
-      "poster": "images/site/diani-beach-2017.jpg",
+      "poster": "images/site/diani-beach-2017-682.v1.webp",
       "ticketUrl": "https://example.com/tickets/harbour-lights",
       "source": "sample"
     },
@@ -34,7 +34,7 @@
       "end": "2027-04-18T21:00:00+03:00",
       "venue": "Diani Beach Club",
       "city": "Diani",
-      "poster": "images/site/groove-worship-2017.jpg",
+      "poster": "images/site/groove-worship-2017-764.v1.webp",
       "ticketUrl": "https://example.com/tickets/diani-sound-bath",
       "source": "sample"
     },
@@ -45,7 +45,7 @@
       "end": "2027-05-23T01:00:00+03:00",
       "venue": "The Alchemist",
       "city": "Nairobi",
-      "poster": "images/site/jameson-2017.jpg",
+      "poster": "images/site/jameson-2017-1000.v1.webp",
       "ticketUrl": "https://example.com/tickets/cue-stack-live",
       "source": "sample"
     },
@@ -56,7 +56,7 @@
       "end": "2026-11-08T22:00:00+03:00",
       "venue": "Bamburi Blu",
       "city": "Mombasa",
-      "poster": "images/site/luther-2019.jpg",
+      "poster": "images/site/luther-2019-1080.v1.webp",
       "ticketUrl": "https://example.com/tickets/sunset-rewind",
       "source": "sample"
     },
@@ -67,7 +67,7 @@
       "end": "2026-06-14T23:30:00+03:00",
       "venue": "Kenya National Theatre",
       "city": "Nairobi",
-      "poster": "images/site/aretha-2018.jpg",
+      "poster": "images/site/aretha-2018-1019.v1.webp",
       "ticketUrl": "https://example.com/tickets/echoes-of-aretha",
       "source": "sample"
     }

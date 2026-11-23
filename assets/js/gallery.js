@@ -5,15 +5,15 @@
   const coarse = window.matchMedia('(pointer: coarse)').matches;
 
   const CUES = [
-    { ch: '001', name: 'KCB M-Pesa', year: '2015', cat: 'Corporate', slug: 'corporate', src: 'images/site/kcb-mpesa-2015.jpg', alt: 'KCB M-Pesa launch with confetti falling over the stage' },
-    { ch: '002', name: 'Jameson', year: '2016', cat: 'Clubs', slug: 'clubs', src: 'images/site/jameson-2016.jpg', alt: 'Jameson event lit in blue and red' },
-    { ch: '003', name: 'Diani Beach', year: '2017', cat: 'Festivals', slug: 'festivals', src: 'images/site/diani-beach-2017.jpg', alt: 'Diani Beach festival stage lit against the night sky' },
-    { ch: '004', name: 'Groove Worship', year: '2017', cat: 'Concerts', slug: 'concerts', src: 'images/site/groove-worship-2017.jpg', alt: 'Groove Worship concert stage with warm side light' },
-    { ch: '005', name: 'Jameson', year: '2017', cat: 'Clubs', slug: 'clubs', src: 'images/site/jameson-2017.jpg', alt: 'Pink and red stage light over a packed Jameson crowd' },
-    { ch: '006', name: 'Jazz Festival', year: '2017', cat: 'Festivals', slug: 'festivals', src: 'images/site/jazz-festival-2017.jpg', alt: 'Safaricom Jazz Festival stage with white beams cutting through the night' },
-    { ch: '007', name: 'Aretha', year: '2018', cat: 'Concerts', slug: 'concerts', src: 'images/site/aretha-2018.jpg', alt: 'Aretha Franklin tribute concert in warm amber light' },
-    { ch: '008', name: 'Praise Fest', year: '2018', cat: 'Festivals', slug: 'festivals', src: 'images/site/praise-fest-2018.jpg', alt: 'Praise Fest congregation under blue and white stage light' },
-    { ch: '009', name: 'Luther', year: '2019', cat: 'Concerts', slug: 'concerts', src: 'images/site/luther-2019.jpg', alt: 'Luther performing in a yellow suit under warm stage light' }
+    { ch: '001', name: 'KCB M-Pesa', year: '2015', cat: 'Corporate', slug: 'corporate', src: 'images/site/kcb-mpesa-2015-1000.v1.webp', alt: 'KCB M-Pesa launch with confetti falling over the stage' },
+    { ch: '002', name: 'Jameson', year: '2016', cat: 'Clubs', slug: 'clubs', src: 'images/site/jameson-2016-624.v1.webp', alt: 'Jameson event lit in blue and red' },
+    { ch: '003', name: 'Diani Beach', year: '2017', cat: 'Festivals', slug: 'festivals', src: 'images/site/diani-beach-2017-682.v1.webp', alt: 'Diani Beach festival stage lit against the night sky' },
+    { ch: '004', name: 'Groove Worship', year: '2017', cat: 'Concerts', slug: 'concerts', src: 'images/site/groove-worship-2017-764.v1.webp', alt: 'Groove Worship concert stage with warm side light' },
+    { ch: '005', name: 'Jameson', year: '2017', cat: 'Clubs', slug: 'clubs', src: 'images/site/jameson-2017-1000.v1.webp', alt: 'Pink and red stage light over a packed Jameson crowd' },
+    { ch: '006', name: 'Jazz Festival', year: '2017', cat: 'Festivals', slug: 'festivals', src: 'images/site/jazz-festival-2017-1280.v1.webp', alt: 'Safaricom Jazz Festival stage with white beams cutting through the night' },
+    { ch: '007', name: 'Aretha', year: '2018', cat: 'Concerts', slug: 'concerts', src: 'images/site/aretha-2018-1019.v1.webp', alt: 'Aretha Franklin tribute concert in warm amber light' },
+    { ch: '008', name: 'Praise Fest', year: '2018', cat: 'Festivals', slug: 'festivals', src: 'images/site/praise-fest-2018-640.v1.webp', alt: 'Praise Fest congregation under blue and white stage light' },
+    { ch: '009', name: 'Luther', year: '2019', cat: 'Concerts', slug: 'concerts', src: 'images/site/luther-2019-1080.v1.webp', alt: 'Luther performing in a yellow suit under warm stage light' }
   ];
 
   const $ = (sel, root = document) => root.querySelector(sel);

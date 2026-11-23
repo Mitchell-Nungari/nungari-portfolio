@@ -1,30 +1,42 @@
 /* Three.js stage: truss, moving heads, volumetric beams */
-import * as THREE from 'three';
-
 const hero = document.querySelector('.hero');
 const canvas = document.getElementById('stageCanvas');
 
 if (hero && canvas) {
-  try {
-    initStage();
-  } catch (err) {
-    // The hero's still image remains as the fallback.
-    console.warn('[stage] falling back to still', err);
+  // The still hero image is the fallback. Only pull in the ~200 KB three
+  // module once the hero is actually on screen, and never block first paint.
+  let loaded = false;
+  const load = () => {
+    if (loaded) return;
+    loaded = true;
+    import('three').then((THREE) => {
+      try { initStage(THREE); }
+      catch (err) { console.warn('[stage] falling back to still', err); }
+    }).catch((err) => console.warn('[stage] three not available', err));
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); load(); }
+    }, { rootMargin: '200px' });
+    io.observe(hero);
+  } else {
+    load();
   }
 }
 
-function initStage() {
+function initStage(THREE) {
   const mobile = window.matchMedia('(max-width: 760px)').matches;
+  const lowEnd = mobile && ((navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 2);
   const renderer = new THREE.WebGLRenderer({
     canvas,
-    antialias: true,
+    antialias: !lowEnd,
     alpha: false,
     powerPreference: 'high-performance'
   });
   renderer.setClearColor(0x050506, 1);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NoToneMapping;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.35 : 1.7));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2));
 
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x050506, 0.038);
@@ -33,7 +45,7 @@ function initStage() {
   camera.position.set(0, 2.35, 11.6);
 
   /* ---------- shared textures / materials ---------- */
-  const glowTexture = makeGlowTexture();
+  const glowTexture = makeGlowTexture(THREE);
   const darkMetal = new THREE.MeshStandardMaterial({ color: 0x24272c, metalness: 0.82, roughness: 0.42 });
   const blackMetal = new THREE.MeshStandardMaterial({ color: 0x111216, metalness: 0.5, roughness: 0.55 });
 
@@ -449,9 +461,16 @@ function initStage() {
     renderer.render(scene, camera);
   };
 
+  let lastRender = 0;
   const loop = (now) => {
     raf = 0;
     if (dead) return;
+    // ~30fps on phones: half the GPU work for an effect that is deliberately soft.
+    if (mobile && now - lastRender < 33) {
+      raf = requestAnimationFrame(loop);
+      return;
+    }
+    lastRender = now;
     try {
       update(now);
     } catch (err) {
@@ -493,17 +512,36 @@ function initStage() {
     }
   });
 
+  const disposeMaterial = (mat) => {
+    if (!mat) return;
+    Object.keys(mat).forEach((key) => {
+      const val = mat[key];
+      if (val && val.isTexture && val !== glowTexture) val.dispose();
+    });
+    if (mat.uniforms) {
+      Object.values(mat.uniforms).forEach((u) => {
+        if (u && u.value && u.value.isTexture && u.value !== glowTexture) u.value.dispose();
+      });
+    }
+    mat.dispose();
+  };
   window.addEventListener('pagehide', () => {
     dead = true;
     if (raf) cancelAnimationFrame(raf);
     ro.disconnect();
     io.disconnect();
+    scene.traverse((obj) => {
+      if (obj.geometry) obj.geometry.dispose();
+      if (Array.isArray(obj.material)) obj.material.forEach(disposeMaterial);
+      else disposeMaterial(obj.material);
+    });
+    glowTexture.dispose();
     renderer.dispose();
   }, { once: true });
 
 }
 
-function makeGlowTexture() {
+function makeGlowTexture(THREE) {
   const size = 128;
   const c = document.createElement('canvas');
   c.width = size;

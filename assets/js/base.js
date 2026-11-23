@@ -10,8 +10,35 @@
   /* ---------- Ambient video + parallax ---------- */
   const ambient = document.querySelector('.ambient__video');
   if (ambient) {
-    const play = () => { const p = ambient.play(); if (p && p.catch) p.catch(() => {}); };
-    play();
+    const conn = navigator.connection || navigator.webkitConnection || {};
+    const skipVideo = window.matchMedia('(max-width: 640px)').matches ||
+      (window.matchMedia('(prefers-reduced-data: reduce)').matches) ||
+      !!conn.saveData ||
+      (!!conn.effectiveType && /^(slow-)?2g$/.test(conn.effectiveType)) ||
+      (typeof conn.downlink === 'number' && conn.downlink < 1.6);
+
+    let enabled = !skipVideo;
+    const play = () => {
+      if (!enabled) return;
+      const p = ambient.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+    if (enabled) {
+      // The poster is already on screen. Only fetch and start the movie after
+      // the page has loaded and the main thread is idle.
+      const start = () => {
+        if (!enabled) return;
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(play, { timeout: 2000 });
+        } else {
+          setTimeout(play, 200);
+        }
+      };
+      if (document.readyState === 'complete') start();
+      else window.addEventListener('load', start, { once: true });
+    } else {
+      // preload="none" means no source is fetched; the poster stays on screen.
+    }
     document.addEventListener('visibilitychange', () => { if (!document.hidden) play(); });
     if (hasST) {
       gsap.fromTo(ambient,

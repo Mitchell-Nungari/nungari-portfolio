@@ -506,3 +506,8 @@
   .wall__item{width:82vw}
   .wall__head h2{font-size:clamp(36px,10vw,54px)}
 }
+
+/* Phone glass: keep the material, lower the blur cost. */
+@media (max-width:760px){
+  .lb__scrim{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+}

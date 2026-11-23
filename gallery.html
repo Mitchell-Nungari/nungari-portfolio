@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName('script')[0],
-  j=d.createElement('script'),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-TGPQCRGP');</script>
+  <!-- Analytics: loaded after first paint so it never delays the page -->
+  <script>
+    window.addEventListener('load', function () {
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-TGPQCRGP');
+    }, { once: true });
+  </script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,10 +25,10 @@
   <meta property="og:image" content="images/site/jazz-festival-2017.jpg" />
   <link rel="icon" type="image/png" href="images/site/mm%20logo.png" />
   <link rel="apple-touch-icon" href="images/site/mm%20logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="images/site/bg.jpg" fetchpriority="high" />
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-tight-latin.v1.woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/gallery.css" />
   <script>document.documentElement.classList.add('js');</script>
@@ -49,8 +55,9 @@
   <div class="grain" aria-hidden="true"></div>
 
   <div class="ambient" aria-hidden="true">
-    <video class="ambient__video" autoplay muted loop playsinline preload="auto" poster="images/site/bg.jpg">
-      <source src="images/bg.mp4" type="video/mp4" />
+    <video class="ambient__video" muted loop playsinline preload="none" poster="images/site/bg.jpg" aria-hidden="true">
+      <source src="images/bg-720.v1.webm" type="video/webm" />
+      <source src="images/bg-720.v1.mp4" type="video/mp4" />
     </video>
     <div class="ambient__veil"></div>
   </div>
@@ -137,15 +144,15 @@
 
           <div class="fan" data-g-fan aria-hidden="true">
             <figure class="fan__item fan__item--1">
-              <img src="images/site/jazz-festival-2017.jpg" alt="" width="1600" height="950" decoding="async" />
+              <img src="images/site/jazz-festival-2017-640.v1.webp" alt="" width="1600" height="950"  srcset="images/site/jazz-festival-2017-640.v1.webp 640w, images/site/jazz-festival-2017-1280.v1.webp 1280w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="eager" fetchpriority="high" />
               <figcaption class="fan__tape">CH 006 · Jazz</figcaption>
             </figure>
             <figure class="fan__item fan__item--2">
-              <img src="images/site/aretha-2018.jpg" alt="" width="1019" height="1019" decoding="async" />
+              <img src="images/site/aretha-2018-640.v1.webp" alt="" width="1019" height="1019"  srcset="images/site/aretha-2018-640.v1.webp 640w, images/site/aretha-2018-1019.v1.webp 1019w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <figcaption class="fan__tape">CH 007 · Aretha</figcaption>
             </figure>
             <figure class="fan__item fan__item--3">
-              <img src="images/site/luther-2019.jpg" alt="" width="1080" height="1080" decoding="async" />
+              <img src="images/site/luther-2019-640.v1.webp" alt="" width="1080" height="1080"  srcset="images/site/luther-2019-640.v1.webp 640w, images/site/luther-2019-1080.v1.webp 1080w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <figcaption class="fan__tape">CH 009 · Luther</figcaption>
             </figure>
           </div>
@@ -229,8 +236,8 @@
           <div class="cue__stage">
             <div class="stage">
               <div class="stage__viewer" id="stageViewer">
-                <img class="stage__img stage__img--base" id="stageBase" src="images/site/jazz-festival-2017.jpg" alt="Safaricom Jazz Festival stage with white beams cutting through the night" width="1600" height="950" fetchpriority="high" decoding="async" />
-                <img class="stage__img stage__img--spot" id="stageSpot" src="images/site/jazz-festival-2017.jpg" alt="" aria-hidden="true" width="1600" height="950" decoding="async" />
+                <img class="stage__img stage__img--base" id="stageBase" src="images/site/jazz-festival-2017-640.v1.webp" alt="Safaricom Jazz Festival stage with white beams cutting through the night" width="1600" height="950"  srcset="images/site/jazz-festival-2017-640.v1.webp 640w, images/site/jazz-festival-2017-1280.v1.webp 1280w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
+                <img class="stage__img stage__img--spot" id="stageSpot" src="images/site/jazz-festival-2017-640.v1.webp" alt="" aria-hidden="true" width="1600" height="950"  srcset="images/site/jazz-festival-2017-640.v1.webp 640w, images/site/jazz-festival-2017-1280.v1.webp 1280w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
                 <div class="stage__grade" aria-hidden="true"></div>
                 <div class="stage__reticle" aria-hidden="true"></div>
 
@@ -288,47 +295,47 @@
         <div class="wall__viewport" id="wallViewport">
           <div class="wall__track" id="wallTrack">
             <button class="wall__item" type="button" data-index="0" aria-label="Load cue 001, KCB M-Pesa, 2015">
-              <img src="images/site/kcb-mpesa-2015.jpg" alt="KCB M-Pesa launch with confetti falling over the stage" width="1000" height="667" loading="lazy" decoding="async" />
+              <img src="images/site/kcb-mpesa-2015-640.v1.webp" alt="KCB M-Pesa launch with confetti falling over the stage" width="1000" height="667"  srcset="images/site/kcb-mpesa-2015-640.v1.webp 640w, images/site/kcb-mpesa-2015-1000.v1.webp 1000w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <span class="wall__ch">CH 001</span>
               <span class="wall__meta"><span><b>KCB M-Pesa</b><span>Corporate · 2015</span></span></span>
             </button>
             <button class="wall__item" type="button" data-index="1" aria-label="Load cue 002, Jameson, 2016">
-              <img src="images/site/jameson-2016.jpg" alt="Jameson event lit in blue and red" width="624" height="416" loading="lazy" decoding="async" />
+              <img src="images/site/jameson-2016-624.v1.webp" alt="Jameson event lit in blue and red" width="624" height="416"  srcset="images/site/jameson-2016-624.v1.webp 624w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <span class="wall__ch">CH 002</span>
               <span class="wall__meta"><span><b>Jameson</b><span>Clubs · 2016</span></span></span>
             </button>
             <button class="wall__item" type="button" data-index="2" aria-label="Load cue 003, Diani Beach, 2017">
-              <img src="images/site/diani-beach-2017.jpg" alt="Diani Beach festival stage lit against the night sky" width="682" height="682" loading="lazy" decoding="async" />
+              <img src="images/site/diani-beach-2017-640.v1.webp" alt="Diani Beach festival stage lit against the night sky" width="682" height="682"  srcset="images/site/diani-beach-2017-640.v1.webp 640w, images/site/diani-beach-2017-682.v1.webp 682w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <span class="wall__ch">CH 003</span>
               <span class="wall__meta"><span><b>Diani Beach</b><span>Festivals · 2017</span></span></span>
             </button>
             <button class="wall__item" type="button" data-index="3" aria-label="Load cue 004, Groove Worship, 2017">
-              <img src="images/site/groove-worship-2017.jpg" alt="Groove Worship concert stage with warm side light" width="764" height="432" loading="lazy" decoding="async" />
+              <img src="images/site/groove-worship-2017-640.v1.webp" alt="Groove Worship concert stage with warm side light" width="764" height="432"  srcset="images/site/groove-worship-2017-640.v1.webp 640w, images/site/groove-worship-2017-764.v1.webp 764w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <span class="wall__ch">CH 004</span>
               <span class="wall__meta"><span><b>Groove Worship</b><span>Concerts · 2017</span></span></span>
             </button>
             <button class="wall__item" type="button" data-index="4" aria-label="Load cue 005, Jameson, 2017">
-              <img src="images/site/jameson-2017.jpg" alt="Pink and red stage light over a packed Jameson crowd" width="1000" height="667" loading="lazy" decoding="async" />
+              <img src="images/site/jameson-2017-640.v1.webp" alt="Pink and red stage light over a packed Jameson crowd" width="1000" height="667"  srcset="images/site/jameson-2017-640.v1.webp 640w, images/site/jameson-2017-1000.v1.webp 1000w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <span class="wall__ch">CH 005</span>
               <span class="wall__meta"><span><b>Jameson</b><span>Clubs · 2017</span></span></span>
             </button>
             <button class="wall__item" type="button" data-index="5" aria-label="Load cue 006, Jazz Festival, 2017">
-              <img src="images/site/jazz-festival-2017.jpg" alt="Safaricom Jazz Festival stage with white beams cutting through the night" width="1600" height="950" loading="lazy" decoding="async" />
+              <img src="images/site/jazz-festival-2017-640.v1.webp" alt="Safaricom Jazz Festival stage with white beams cutting through the night" width="1600" height="950"  srcset="images/site/jazz-festival-2017-640.v1.webp 640w, images/site/jazz-festival-2017-1280.v1.webp 1280w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <span class="wall__ch">CH 006</span>
               <span class="wall__meta"><span><b>Jazz Festival</b><span>Festivals · 2017</span></span></span>
             </button>
             <button class="wall__item" type="button" data-index="6" aria-label="Load cue 007, Aretha, 2018">
-              <img src="images/site/aretha-2018.jpg" alt="Aretha Franklin tribute concert in warm amber light" width="1019" height="1019" loading="lazy" decoding="async" />
+              <img src="images/site/aretha-2018-640.v1.webp" alt="Aretha Franklin tribute concert in warm amber light" width="1019" height="1019"  srcset="images/site/aretha-2018-640.v1.webp 640w, images/site/aretha-2018-1019.v1.webp 1019w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <span class="wall__ch">CH 007</span>
               <span class="wall__meta"><span><b>Aretha</b><span>Concerts · 2018</span></span></span>
             </button>
             <button class="wall__item" type="button" data-index="7" aria-label="Load cue 008, Praise Fest, 2018">
-              <img src="images/site/praise-fest-2018.jpg" alt="Praise Fest congregation under blue and white stage light" width="640" height="640" loading="lazy" decoding="async" />
+              <img src="images/site/praise-fest-2018-640.v1.webp" alt="Praise Fest congregation under blue and white stage light" width="640" height="640"  srcset="images/site/praise-fest-2018-640.v1.webp 640w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <span class="wall__ch">CH 008</span>
               <span class="wall__meta"><span><b>Praise Fest</b><span>Festivals · 2018</span></span></span>
             </button>
             <button class="wall__item" type="button" data-index="8" aria-label="Load cue 009, Luther, 2019">
-              <img src="images/site/luther-2019.jpg" alt="Luther performing in a yellow suit under warm stage light" width="1080" height="1080" loading="lazy" decoding="async" />
+              <img src="images/site/luther-2019-640.v1.webp" alt="Luther performing in a yellow suit under warm stage light" width="1080" height="1080"  srcset="images/site/luther-2019-640.v1.webp 640w, images/site/luther-2019-1080.v1.webp 1080w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" />
               <span class="wall__ch">CH 009</span>
               <span class="wall__meta"><span><b>Luther</b><span>Concerts · 2019</span></span></span>
             </button>
@@ -353,20 +360,20 @@
         <div class="gallery-logos__viewport">
           <div class="gallery-logos__track">
             <ul class="gallery-logos__set">
-              <li class="gclient"><img src="images/site/safaricom.png" alt="Safaricom" width="700" height="700" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/diageo.png" alt="Diageo" width="594" height="420" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/eabl.png" alt="East African Breweries" width="700" height="322" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/kwal.png" alt="Kenya Wine Agencies" width="500" height="500" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/neptune-paradise.png" alt="Neptune Hotels" width="700" height="316" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/royal-media.png" alt="Royal Media Services" width="700" height="700" loading="lazy" decoding="async" /></li>
+              <li class="gclient"><img src="images/site/safaricom-640.v1.webp" alt="Safaricom" width="700" height="700"  srcset="images/site/safaricom-640.v1.webp 640w, images/site/safaricom-700.v1.webp 700w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/diageo-594.v1.webp" alt="Diageo" width="594" height="420"  srcset="images/site/diageo-594.v1.webp 594w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/eabl-640.v1.webp" alt="East African Breweries" width="700" height="322"  srcset="images/site/eabl-640.v1.webp 640w, images/site/eabl-700.v1.webp 700w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/kwal-500.v1.webp" alt="Kenya Wine Agencies" width="500" height="500"  srcset="images/site/kwal-500.v1.webp 500w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/neptune-paradise-640.v1.webp" alt="Neptune Hotels" width="700" height="316"  srcset="images/site/neptune-paradise-640.v1.webp 640w, images/site/neptune-paradise-700.v1.webp 700w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/royal-media-640.v1.webp" alt="Royal Media Services" width="700" height="700"  srcset="images/site/royal-media-640.v1.webp 640w, images/site/royal-media-700.v1.webp 700w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
             </ul>
             <ul class="gallery-logos__set" aria-hidden="true">
-              <li class="gclient"><img src="images/site/safaricom.png" alt="" width="700" height="700" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/diageo.png" alt="" width="594" height="420" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/eabl.png" alt="" width="700" height="322" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/kwal.png" alt="" width="500" height="500" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/neptune-paradise.png" alt="" width="700" height="316" loading="lazy" decoding="async" /></li>
-              <li class="gclient"><img src="images/site/royal-media.png" alt="" width="700" height="700" loading="lazy" decoding="async" /></li>
+              <li class="gclient"><img src="images/site/safaricom-640.v1.webp" alt="" width="700" height="700"  srcset="images/site/safaricom-640.v1.webp 640w, images/site/safaricom-700.v1.webp 700w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/diageo-594.v1.webp" alt="" width="594" height="420"  srcset="images/site/diageo-594.v1.webp 594w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/eabl-640.v1.webp" alt="" width="700" height="322"  srcset="images/site/eabl-640.v1.webp 640w, images/site/eabl-700.v1.webp 700w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/kwal-500.v1.webp" alt="" width="500" height="500"  srcset="images/site/kwal-500.v1.webp 500w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/neptune-paradise-640.v1.webp" alt="" width="700" height="316"  srcset="images/site/neptune-paradise-640.v1.webp 640w, images/site/neptune-paradise-700.v1.webp 700w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
+              <li class="gclient"><img src="images/site/royal-media-640.v1.webp" alt="" width="700" height="700"  srcset="images/site/royal-media-640.v1.webp 640w, images/site/royal-media-700.v1.webp 700w" sizes="(max-width: 640px) 100vw, 50vw" decoding="async" loading="lazy" /></li>
             </ul>
           </div>
         </div>
@@ -411,11 +418,11 @@
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script>if (!window.gsap) document.documentElement.classList.remove('js');</script>
-  <script src="assets/js/base.js"></script>
-  <script src="assets/js/gallery.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',function(){if(!window.gsap)document.documentElement.classList.remove('js');});</script>
+  <script defer src="assets/js/base.js"></script>
+  <script defer src="assets/js/gallery.js"></script>
 </body>
 </html>

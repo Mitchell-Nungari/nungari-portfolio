@@ -881,10 +881,9 @@
   .hero__sub{font-size:14.5px}
   .hero__actions{gap:8px;margin-top:20px}
   .hero__actions .btn{flex:1 1 auto;justify-content:space-between}
-  .hero__foot{padding-top:12px;gap:10px}
-  .hero__status{font-size:8.5px;letter-spacing:.1em;white-space:nowrap}
-  .scroll-cue{font-size:9px;white-space:nowrap;padding-block:15px;margin-block:-15px}
-  .scroll-cue__track{width:38px}
+  /* HH:MM:SS on one line: fluid type from 320px, dimmer seconds. */
+  .clock__time{font-size:clamp(26px,7.4vw,32px);letter-spacing:-.02em}
+  .clock__time .clock__sec{color:rgba(243,241,234,.62)}
   .controls{padding:12px;gap:12px 14px;border-radius:18px}
   .controls__row--cities{flex:1 1 100%}
   .chip{min-height:38px;padding:0 12px;font-size:9px}
@@ -912,15 +911,14 @@
   .lb__body h3{font-size:clamp(26px,7vw,38px)}
   .empty{padding:44px 18px}
 }
-/* The hero footer row needs ~340px; below that the cue and the status
-   stack so neither is ever clipped by the container's padding. */
-@media (max-width:400px){
-  .hero__foot{flex-direction:column;align-items:flex-start;gap:4px}
-  .hero__status{align-self:flex-end}
-}
 @media (max-height:740px) and (min-width:821px){
   .hero__inner{padding-top:92px;gap:24px}
   .hero__title{font-size:clamp(52px,9vw,132px)}
   .hero__aside{max-width:320px}
   .hero__actions{margin-top:18px}
+}
+
+/* Phone glass: keep the material, lower the blur cost. */
+@media (max-width:760px){
+  .clock{-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
 }
