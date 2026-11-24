@@ -53,14 +53,13 @@
   }
 
   /* ---------- About photo stack ---------- */
+  // Timing: how long a card rests at the front, then how long the move takes.
+  const HOLD_MS = 5500;
+  const TRANSITION_S = 1.6;
   const aboutStack = document.getElementById('aboutStack');
   if (aboutStack) {
     const cards = [...aboutStack.querySelectorAll('.about__card')];
-    const dots = [...aboutStack.querySelectorAll('.about__dots i')];
-    const prevBtn = aboutStack.querySelector('[data-about-prev]');
-    const nextBtn = aboutStack.querySelector('[data-about-next]');
     const n = cards.length;
-    const STEP = 2.6;
     // Slot 0 is the front card, slot 2 the one at the back of the deck.
     // The cards behind sit straight above the front one — no sideways shift
     // and no turn — so their tops form even steps. The scale shrink pulls
@@ -74,6 +73,7 @@
     const lerp = (a, b, t) => a + (b - a) * t;
     const state = { rot: 0, live: true };
     let tween = null;
+    let hold = null;
     let hovered = false;
     let visible = false;
     const canHover = !!(window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches);
@@ -112,38 +112,48 @@
           lastDim[i] = dim;
         }
       });
-      const front = order[0];
-      dots.forEach((dot, i) => dot.classList.toggle('is-on', i === front));
     };
 
     const sync = () => {
-      if (!tween) return;
+      const paused = state.live && ((canHover && hovered) || !visible);
       // Only the automatic loop waits for the pointer to move away.
-      if (state.live && !tween.userDriven && ((canHover && hovered) || !visible)) tween.pause();
-      else tween.resume();
+      [tween, hold].forEach((item) => {
+        if (!item) return;
+        if (paused && !item.userDriven) item.pause();
+        else item.resume();
+      });
+    };
+
+    const startHold = () => {
+      hold = gsap.delayedCall(HOLD_MS / 1000, () => {
+        hold = null;
+        step(1);
+      });
+      sync();
     };
 
     const step = (dir, user) => {
+      if (hold) { hold.kill(); hold = null; }
       if (tween) tween.kill();
       tween = gsap.to(state, {
         rot: state.rot + dir,
-        duration: STEP,
+        duration: TRANSITION_S,
         ease: 'power2.inOut',
         onUpdate: paint,
-        onComplete: () => { if (state.live) step(1); }
+        onComplete: () => {
+          tween = null;
+          if (state.live) startHold();
+        }
       });
       tween.userDriven = !!user;
       sync();
     };
 
-    // Buttons and keys take over: the automatic loop stops for good.
+    // Keys take over: the automatic loop stops for good.
     const takeOver = (dir) => { state.live = false; step(dir, true); };
 
     paint();
-    step(1);
-
-    if (prevBtn) prevBtn.addEventListener('click', () => takeOver(-1));
-    if (nextBtn) nextBtn.addEventListener('click', () => takeOver(1));
+    startHold();
 
     aboutStack.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') { e.preventDefault(); takeOver(-1); }

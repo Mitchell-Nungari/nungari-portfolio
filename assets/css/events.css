@@ -261,7 +261,7 @@
   letter-spacing:-.01em;
   color:var(--ink);
 }
-.search input::placeholder{color:rgba(243,241,234,.34)}
+.search input::placeholder{color:rgba(243,241,234,.55)}
 .search input::-webkit-search-cancel-button{-webkit-appearance:none;height:14px;width:14px;background:rgba(243,241,234,.4);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 6l12 12M18 6L6 18' stroke='%23000' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;cursor:pointer}
 
 .segment{
